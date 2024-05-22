@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "971477337144",
+    "project_id": "authtutorial22",
+    "storage_bucket": "authtutorial22.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:971477337144:android:04806cf01b4fd0446d92cd",
+        "android_client_info": {
+          "package_name": "com.example.exercise_login_page"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD__oT2tLs_rP9wTpc2Sph9QGa01_kzPho"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
