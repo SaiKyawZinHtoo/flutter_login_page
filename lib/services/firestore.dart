@@ -1,32 +1,24 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../models/item.dart';
 
 class FirestoreService {
-  // get collection of notes
-  final CollectionReference notes =
-      FirebaseFirestore.instance.collection('notes');
-  //create
-  Future<void> addNote(String note) {
-    return notes.add({'note': note, 'timestamp': Timestamp.now()});
+  final CollectionReference _itemsCollection =
+      FirebaseFirestore.instance.collection('items');
+
+  Future<void> addItem(Item item) async {
+    await _itemsCollection.add(item.toMap());
   }
 
-  //reate
-  Stream<QuerySnapshot> getNoteStream() {
-    final notesStream =
-        notes.orderBy('timestamp', descending: true).snapshots();
-
-    return notesStream;
+  Future<void> updateItem(Item item) async {
+    await _itemsCollection.doc(item.id).update(item.toMap());
   }
 
-  //update
-  Future<void> updateNote(String docId, String newNote) {
-    return notes.doc(docId).update({
-      'note': newNote,
-      'timestamp': Timestamp.now(),
-    });
+  Future<void> deleteItem(String id) async {
+    await _itemsCollection.doc(id).delete();
   }
 
-  //delete
-  Future<void> deleteNote(String docId) {
-    return notes.doc(docId).delete();
+  Stream<List<Item>> getItems() {
+    return _itemsCollection.snapshots().map((snapshot) =>
+        snapshot.docs.map((doc) => Item.fromDocument(doc)).toList());
   }
 }
